@@ -1,93 +1,59 @@
-//All the DOM elements that we need
-
-const balance = $("#showBalance");
-const income = $("#showIncome");
-const expense = $("#showExpense");
-const list = $("#history");
-const add_Item = $("#addItem");
-const add_Amount = $("#amount");
-const add_Transaction = $("#addTransaction");
-let get_balance = 0,
-    get_expense = 0,
-    get_income = 0,
-    get_item = "",
-    get_amount = 0,
-    transactions;
-
-if (localStorage.getItem("transactions") == null) {
-    transactions = [];
-    document.querySelectorAll(".addedClass").forEach(element => {
-        get_item = element.childNodes[0].innerText;
-        get_amount = element.childNodes[1].innerText;
-        let entry = ({
-            item: get_item,
-            money: get_amount
-        });
-        transactions.push(entry);
-        localStorage.setItem("transactions", JSON.stringify(transactions));
-    });
-} else {
-    transactions = JSON.parse(localStorage.getItem("transactions"))
-}
+let totBal = document.getElementById("showBalance");
+let income = document.getElementById("showIncome");
+let expense = document.getElementById("showExpense");
+let itemsList = document.getElementById("history");
+let addTransBtn = document.getElementById("addTransaction");
 
 
+displayList();
+addTransBtn.addEventListener("click", () => {
+    let newItem = document.getElementById("addItem");
+    let newItemAmount = document.getElementById("amount");
 
-if (localStorage.getItem("balance") == null)
-    get_balance = (Number(balance.text())).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-else
-    get_balance = JSON.parse(localStorage.getItem("balance"));
-balance.html(`$${get_balance}`);
-
-if (localStorage.getItem("expense") == null)
-    get_expense = (Number(expense.text())).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-else
-    get_expense = JSON.parse(localStorage.getItem("expense"));
-expense.html(`$${get_expense}`);
-
-if (localStorage.getItem("income") == null)
-    get_income = (Number(income.text())).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-else
-    get_income = JSON.parse(localStorage.getItem("income"));
-income.html(`$${get_income}`);
-
-let sign = "";
-
-
-storeValues();
-
-//display items in history
-
-add_Transaction.click(() => {
-    get_amount = add_Amount.val();
-    get_item = add_Item.val();
-    let entry = ({
-        item: get_item,
-        money: get_amount
-    });
-    transactions.push(entry);
-    if (get_amount < 0) {
-        $(`<div class="addedClass debit"><span class="item">${get_item}</span><span class = "money">${get_amount}</span><button class = "deleteBtn">x</button></div>`).appendTo(list);
-        get_balance = (get_balance - Math.abs(get_amount)).toFixed(2);
-        balance.html(`$${get_balance}`);
-        get_expense = (Number(get_expense) + Number(Math.abs(get_amount))).toFixed(2);
-        expense.html(`$${get_expense}`);
-    } else {
-        sign = "+";
-        $(`<div class="addedClass credit"><span class="item">${get_item}</span><span class = "money">${sign}${get_amount}</span><button class = "deleteBtn">x</button></div>`).appendTo(list);
-        get_balance = (Number(get_balance) + Number(Math.abs(get_amount))).toFixed(2);
-        balance.html(`$${get_balance}`);
-        get_income = (Number(get_income) + Number(Math.abs(get_amount))).toFixed(2);
-        income.html(`$${get_income}`);
+    let listItem = {
+        item: newItem.value,
+        amount: newItemAmount.value
     }
 
-    storeValues();
-});
+    let allItems = localStorage.getItem("allItems");
+    if (allItems == null)
+        items = [];
+    else
+        items = JSON.parse(allItems);
 
-//Storing items in local storage
+    items.push(listItem);
+    localStorage.setItem("allItems", JSON.stringify(items));
+    newItem.value = "";
+    newItemAmount.value = "";
 
-function storeValues() {
-    localStorage.setItem("balance", JSON.stringify(get_balance));
-    localStorage.setItem("income", JSON.stringify(get_income));
-    localStorage.setItem("expense", JSON.stringify(get_expense));
-    localStorage.setItem("transactions", JSON.stringify(transactions));
+    displayList();
+})
+
+
+function displayList() {
+    let html = "";
+    let allItems = localStorage.getItem("allItems");
+    if (allItems == null)
+        items = [];
+    else {
+        items = JSON.parse(allItems);
+    }
+
+    if (items.length == 0)
+        itemsList.innerHTML = `<div> nothing to display</div>`
+
+    else {
+        items.forEach((element, index) => {
+
+            if (Number(element.amount) < 0)
+                html += ` <div class="addedClass debit"><span class="item">${element.item}</span><span class="money">${Number(element.amount)}</span><button
+                    class="deleteBtn">x</button></div>`;
+            else if (Number(element.amount) > 0)
+                html += `<div class="addedClass credit"><span class="item">${element.item}</span><span class="money">${Number(element.amount)}</span><button
+                    class="deleteBtn">x</button></div>`;
+
+        });
+    }
+
+    itemsList.innerHTML = html;
 }
