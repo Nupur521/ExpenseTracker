@@ -1,166 +1,182 @@
 :root {
-  --border-color: rgb(150, 146, 146);
+    --border-color: rgb(150, 146, 146);
 }
 
 body {
-  background-color: #f5f5f5;
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
+    background-color: #f5f5f5;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
 }
 
 .expenseTracker {
-  display: flex;
-  flex-direction: column;
-  width: 25%;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
 }
 
 .headingExpense {
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-family: "Overpass", sans-serif;
-  font-size: 1.3rem;
-  font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: "Overpass", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
 }
 
 .headingBalance {
-  font-weight: 400;
+    font-weight: 400;
 }
+
 .balance {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
+
 .showBalance {
-  font-weight: 700;
-  font-size: 1.5rem;
+    font-weight: 700;
+    font-size: 1.5rem;
 }
+
 .incomeExpense {
-  text-transform: uppercase;
-  display: flex;
-  justify-content: center;
-  background-color: #fff;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 2rem;
-  box-shadow: 0.6px 0.6px 0.8px 0.8px var(--border-color);
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: 0.6px 0.6px 0.8px 0.8px var(--border-color);
 }
-.incomeExpense > * {
-  flex-basis: 100%;
+
+.incomeExpense>* {
+    flex-basis: 100%;
 }
 
 .showIncome {
-  color: green;
-  font-size: 1.2rem;
-  font-weight: 700;
+    color: green;
+    font-size: 1.2rem;
+    font-weight: 700;
 }
 
 .showExpense {
-  color: red;
-  font-size: 1.2rem;
-  font-weight: 700;
+    color: red;
+    font-size: 1.2rem;
+    font-weight: 700;
 }
 
 .income {
-  border-right: 0.1px solid var(--border-color);
-  padding: 1rem;
-  font-family: "Overpass", sans-serif;
+    border-right: 0.1px solid var(--border-color);
+    padding: 1rem;
+    font-family: "Overpass", sans-serif;
 }
+
 .expense {
-  padding: 1rem;
-  font-family: "Overpass", sans-serif;
+    padding: 1rem;
+    font-family: "Overpass", sans-serif;
 }
 
 .horizontalRule {
-  border-style: none;
-  border-bottom: 1px solid var(--border-color);
+    border-style: none;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .heading {
-  font-size: 1rem;
-  font-weight: 500;
+    font-size: 1rem;
+    font-weight: 500;
 }
+
 .newTransaction .inputBox {
-  width: 100%;
+    width: 100%;
 }
 
 .money {
-  float: right;
-  margin-right: 0.4rem;
+    float: right;
+    margin-right: 0.4rem;
 }
 
 .inputBox {
-  border-radius: 0.2rem;
-  border-style: none;
-  border: 0.1rem solid rgb(211, 207, 207);
-  padding: 0.5rem;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
+    border-radius: 0.2rem;
+    border-style: none;
+    border: 0.1rem solid rgb(211, 207, 207);
+    padding: 0.5rem;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
+
 .addedClass {
-  position: relative;
-  box-shadow: 0.6px 0.6px 0.8px 0.8px rgb(196, 188, 188);
-  padding: 0.5rem;
-  color: rgb(88, 86, 86);
-  font-weight: 500;
+    position: relative;
+    box-shadow: 0.6px 0.6px 0.8px 0.8px rgb(196, 188, 188);
+    padding: 0.5rem;
+    color: rgb(88, 86, 86);
+    font-weight: 500;
 }
 
 .addedClass.debit {
-  margin-top: 1rem;
-  border-right: 0.5rem solid red;
+    margin-top: 1rem;
+    border-right: 0.5rem solid red;
 }
+
 .addedClass.credit {
-  margin-top: 1rem;
-  border-right: 0.5rem solid green;
+    margin-top: 1rem;
+    border-right: 0.5rem solid green;
 }
 
 .addTransaction {
-  background-image: linear-gradient(
-    to right,
-    #00d2ff 0%,
-    #3a7bd5 51%,
-    #00d2ff 100%
-  );
-  padding: 0.4rem 2.5rem;
-  width: 100%;
-  margin-top: 1rem;
-  font-size: 1rem;
-  text-align: center;
-  transition: 0.5s;
-  background-size: 200% auto;
-  color: white;
-  box-shadow: 0 0 20px #eee;
-  border-radius: 0.4rem;
-  border-style: none;
+    background-image: linear-gradient(to right,
+            #00d2ff 0%,
+            #3a7bd5 51%,
+            #00d2ff 100%);
+    padding: 0.4rem 2.5rem;
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 1rem;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 0.4rem;
+    border-style: none;
 }
 
 .addTransaction:hover {
-  cursor: pointer;
-  background-position: right center; /* change the direction of the change here */
-  color: #fff;
-  text-decoration: none;
-  box-shadow: 2px 2px 0 0 grey;
+    cursor: pointer;
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 2px 2px 0 0 grey;
 }
 
 .deleteBtn {
-  color: white;
-  background-color: rgb(241, 64, 64);
-  width: max-content;
-  padding: 0.3rem;
-  position: absolute;
-  top: 50%;
-  left: 0%;
-  transform: translate(-100%, -50%);
-  transition: opacity 0.3s ease;
-  font-weight: 700;
-  opacity: 0;
-  border: 0;
+    color: white;
+    background-color: rgb(241, 64, 64);
+    width: max-content;
+    padding: 0.3rem;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(-100%, -50%);
+    transition: opacity 0.3s ease;
+    font-weight: 700;
+    opacity: 0;
+    border: 0;
 }
 
 .deleteBtn:hover {
-  opacity: 1;
-  cursor: pointer;
-  transform: translate(1.2);
-  outline: 0.01rem solid black;
+    opacity: 1;
+    cursor: pointer;
+    transform: translate(1.2);
+    outline: 0.01rem solid black;
+}
+
+.noItems {
+    color: #503f3f75;
+    border: 0.02rem solid #e7e1e1;
+    text-align: center;
+    letter-spacing: 0.03rem;
+    padding: 3.2rem;
+    line-height: 1.4rem;
 }
