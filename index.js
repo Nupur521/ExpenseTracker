@@ -5,11 +5,42 @@ let itemsList = document.getElementById("history");
 let addTransBtn = document.getElementById("addTransaction");
 let newItem = document.getElementById("addItem");
 let newItemAmount = document.getElementById("amount");
+let inc,balance,exp;
 
 displayList();
 
+//display income and expense
+
+function displayIncExpense(){
+       if((localStorage.getItem("balance"))==null)
+    {
+       localStorage.setItem('balance',totBal.innerHTML);
+       totBal.innerHTML=`$${totBal.innerHTML}`;
+      
+    }
+    else
+       totBal.innerHTML=`$${localStorage.getItem('balance')}`;
+
+       if((localStorage.getItem("income"))==null)
+       {
+        localStorage.setItem('income',income.innerHTML);
+        income.innerHTML=`$${income.innerHTML}`;
+       }
+    else
+      income.innerHTML=`$${localStorage.getItem("income")}`;
+
+       if((localStorage.getItem("expense"))==null)
+       {
+        localStorage.setItem('expense',expense.innerHTML);
+        expense.innerHTML=`$${expense.innerHTML}`;
+       }
+    else
+      expense.innerHTML=`$${localStorage.getItem("expense")}`;
+}
+
 //Display the list on the screen
 function displayList() {
+    displayIncExpense();
     let html = "";
     let allItems = localStorage.getItem("allItems");
     if (allItems == null)
@@ -18,7 +49,6 @@ function displayList() {
         items = JSON.parse(allItems);
 
     if (items.length == 0) {
-        console.log(itemsList.innerHTML)
         html += `<div class="noItems">No new items to display<br>Add items from below</div>`
         itemsList.innerHTML = html;
     } else {
@@ -68,6 +98,29 @@ function TransactionFnc() {
         item: newItem.value,
         amount: newItemAmount.value
     }
+
+    
+    
+    if(Number(listItem.amount)>0)
+    {
+        inc=(parseInt((income.innerHTML).replace(/^\D+/g, ''))+parseInt(listItem.amount)).toFixed(2);
+        income.innerHTML=`${inc}`;
+        localStorage.setItem('income',inc);
+    }
+    else
+    {
+        inc=(parseInt((expense.innerHTML).replace(/^\D+/g, ''))-parseInt(listItem.amount)).toFixed(2);
+        expense.innerHTML=`${inc}`;
+        localStorage.setItem('expense',inc);
+    }
+    
+    // balance=income.innerHTML;
+    inc = (income.innerHTML).replace( /^\D+/g, '');
+    exp = (expense.innerHTML).replace( /^\D+/g, '');
+    
+    balance=(parseInt(inc)-parseInt(exp)).toFixed(2);
+    totBal.innerHTML=`$${balance.replace( /^\D+/g, '')}`;
+    localStorage.setItem('balance',balance);
 
     let allItems = localStorage.getItem("allItems");
     if (allItems == null)
